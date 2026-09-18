@@ -50,8 +50,13 @@ breakdown and links).
   verifiable, and `notes.md` for the "what I learned" writeup.
 - `progress.md` at the project root — tracks which lessons are not
   started / in progress / done. Source of truth for "what's next".
-- `requirements.txt` at the project root — one shared file, not one
-  per lesson.
+- Dependencies: each lesson is its own independent `uv` project — a
+  `pyproject.toml` (plus `uv.lock`/`.venv` once synced) inside the
+  lesson folder, not a shared root-level `requirements.txt`. Run a
+  lesson's scripts with `uv run <file>.py` from inside its folder; uv
+  installs only what that lesson declares. This scales to lessons with
+  several `.py` files sharing one dependency list, and keeps a lesson
+  folder self-contained/copyable on its own.
 
 When I ask for a new lesson, the next task, or "what's next", use the
 `new-lesson` skill rather than improvising a task from scratch.

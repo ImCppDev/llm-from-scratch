@@ -51,10 +51,21 @@ becomes obvious, not memorized.
 ## Task
 Implement `df1`, `df2`, `grad_f3`, `numerical_derivative`, and
 `numerical_gradient` in `lesson.py` (see `# TODO` markers). Done
-condition: `python check.py` prints `ALL CHECKS PASSED`. Then run the
+condition: `uv run check.py` prints `ALL CHECKS PASSED`. Then run the
 step-8 experiment and write `notes.md`.
 
 ## Files in this lesson
 - `lesson.py` — starter code, implement the TODOs
 - `check.py` — run this to verify your implementation
 - `notes.md` — write your findings here (stub already created)
+- `pyproject.toml` — this lesson's own uv project (no third-party deps
+  needed here, just stdlib `math`)
+
+## Running
+
+This lesson is its own uv project. From this folder:
+```
+uv run check.py
+```
+`uv` resolves/installs this lesson's dependencies on first run — no
+manual `pip install` or shared venv needed.

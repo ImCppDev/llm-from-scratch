@@ -1,0 +1,6 @@
+[project]
+name = "derivatives-and-gradients"
+version = "0.1.0"
+description = "Lesson 00.00: derivatives and gradients by hand"
+requires-python = ">=3.11"
+dependencies = []

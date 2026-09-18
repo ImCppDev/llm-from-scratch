@@ -1,6 +1,6 @@
 ---
 name: new-lesson
-description: Generates the next lesson in the "LLM from scratch" learning project — like a teacher handing out the next assignment. Use whenever the user asks for a new lesson, the next task, a new assignment, what to do next, or says things like "new lesson", "next lesson", "give me a task", "дай задание", "новый урок", "что дальше". Produces a lesson folder with a description, a plan, study links, and the actual task, plus starter code files and any needed dependencies — fully scaffolded so the user can start coding immediately without setting anything up themselves. Also use this skill to check project progress ("where am I", "what's left") by reading progress.md.
+description: Generates the next lesson in the "LLM from scratch" learning project — like a teacher handing out the next assignment. Use whenever the user asks for a new lesson, the next task, a new assignment, what to do next, or says things like "new lesson", "next lesson", "give me a task", "дай задание", "новый урок", "что дальше". Produces a lesson folder with a description, a plan, study links, and the actual task, plus starter code files and its own uv project (pyproject.toml with any needed dependencies) — fully scaffolded so the user can start coding immediately with `uv run` and no manual setup. Also use this skill to check project progress ("where am I", "what's left") by reading progress.md.
 ---
 
 # New Lesson
@@ -54,15 +54,23 @@ Create a folder at `lessons/<stage-id>-<stage-slug>/<lesson-id>-<lesson-slug>/`
 
 ## Dependencies
 
-- Maintain a single `requirements.txt` (or `pyproject.toml`, matching
-  whatever the project already uses) at the project root — don't create
-  a separate one per lesson.
-- Before writing the lesson, check what the lesson needs (e.g. `torch`,
-  `numpy`, `matplotlib` for scaling-curve plots, `tiktoken` only if
-  explicitly comparing against it) and add anything missing.
-- Install what's missing with `pip install --break-system-packages -r requirements.txt`
-  (or the project's existing install command, if a venv is already set
-  up — check for one first) so the user can run the lesson immediately.
+- Each lesson is its own independent `uv` project — never a shared
+  root-level `requirements.txt`/`pyproject.toml`.
+- Scaffold it with `uv init --no-readme --no-workspace --name <lesson-slug>`
+  run *inside* the lesson folder, then delete the placeholder `main.py`
+  it generates (the lesson already has `lesson.py`/`check.py`). Fill in
+  `description` in the generated `pyproject.toml` with the lesson title.
+- Before writing the lesson, check what it needs (e.g. `torch`, `numpy`,
+  `matplotlib` for scaling-curve plots, `tiktoken` only if explicitly
+  comparing against it) and add each with `uv add <package>` from inside
+  the lesson folder — this updates `pyproject.toml` and `uv.lock` and
+  syncs `.venv` in one step, so the user can run the lesson immediately
+  with `uv run <file>.py`. If a lesson needs no third-party packages
+  (e.g. stdlib-only foundations lessons), still create the project via
+  `uv init` and leave `dependencies = []` — `uv run` still works and the
+  lesson stays consistent with every other one.
+- Multi-file lessons (e.g. `model.py` + `train.py` + `check.py`) share
+  this one `pyproject.toml` — don't add per-file dependency headers.
 - Don't add a library the lesson is meant to reimplement (e.g. don't add
   `sentencepiece` for the BPE-from-scratch lesson).
 
