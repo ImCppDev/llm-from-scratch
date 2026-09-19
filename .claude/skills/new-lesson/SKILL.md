@@ -50,7 +50,7 @@ Create a folder at `lessons/<stage-id>-<stage-slug>/<lesson-id>-<lesson-slug>/`
 - **A test/check file** (e.g. `check.py`) when the lesson has a
   verifiable output (shapes match, loss decreases, outputs equal a
   reference within tolerance, etc.). Skip it for lessons that are
-  inherently exploratory (e.g. reading + writing a notes file).
+  inherently exploratory (e.g. reading and summarizing a paper/technique).
 
 ## Dependencies
 

@@ -17,7 +17,9 @@ def df1(x):
 
     TODO: work out d/dx (x**2 + 3*x - 5) on paper, then return it.
     """
-    raise NotImplementedError
+    # (x ** y)' = y * (x ** (y - 1))
+    # (n * x)' = n
+    return 2 * x + 3
 
 
 def f2(x):
@@ -30,7 +32,9 @@ def df2(x):
 
     TODO: work out d/dx (sin(x) * x) on paper, then return it.
     """
-    raise NotImplementedError
+    # (f(x) * g(x))' = f'(x) * g(x) + f(x) * g'(x)
+    # sin'(x) = cos(x)
+    return  math.cos(x) * x + math.sin(x)
 
 
 def f3(x, y):
@@ -44,7 +48,10 @@ def grad_f3(x, y):
     TODO: work out df3/dx and df3/dy on paper, then return them as
     the tuple (df3/dx, df3/dy).
     """
-    raise NotImplementedError
+    return (
+        2 * x * y,
+        x ** 2 + 3 * (y ** 2)
+    )
 
 
 def numerical_derivative(f, x, h=1e-5):
@@ -52,8 +59,7 @@ def numerical_derivative(f, x, h=1e-5):
 
     TODO: implement (f(x + h) - f(x - h)) / (2 * h)
     """
-    raise NotImplementedError
-
+    return (f(x + h) - f(x - h)) / (2 * h)
 
 def numerical_gradient(f, x, y, h=1e-5):
     """Central-difference approximation of the gradient of f(x, y).
@@ -61,7 +67,10 @@ def numerical_gradient(f, x, y, h=1e-5):
     TODO: perturb x and y independently (holding the other fixed),
     return the tuple (df/dx, df/dy).
     """
-    raise NotImplementedError
+    return (
+        (f(x + h, y) - f(x - h, y)) / (2 * h),
+        (f(x, y + h) - f(x, y - h)) / (2 * h)
+    )
 
 
 if __name__ == "__main__":

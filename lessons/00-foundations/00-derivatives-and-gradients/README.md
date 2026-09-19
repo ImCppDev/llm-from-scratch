@@ -38,11 +38,9 @@ becomes obvious, not memorized.
    `grad_f3(x0, y0)`, then evaluate `f3` at
    `(x0, y0) + 0.01 * grad` and at `(x0, y0) - 0.01 * grad`. Confirm
    the first is bigger and the second is smaller than `f3(x0, y0)`.
-9. Write 3–5 sentences in `notes.md`: what you expected the gradient
-   direction to mean before step 8, what you observed, and why the
-   sign of the step matters. This is the whole idea behind gradient
-   descent — one line connecting this to what's coming in stage 00
-   lesson 01 (micrograd) is enough.
+   This is the whole idea behind gradient descent — stepping *against*
+   the gradient to decrease a loss, which is what's coming in stage 00
+   lesson 01 (micrograd).
 
 ## Study links
 - 3Blue1Brown, ["The paradox of the derivative | Chapter 2, Essence of calculus"](https://www.youtube.com/watch?v=9vKqVkMQHKk) (video) — what "instantaneous rate of change" means, built up visually from first principles.
@@ -52,20 +50,43 @@ becomes obvious, not memorized.
 Implement `df1`, `df2`, `grad_f3`, `numerical_derivative`, and
 `numerical_gradient` in `lesson.py` (see `# TODO` markers). Done
 condition: `uv run check.py` prints `ALL CHECKS PASSED`. Then run the
-step-8 experiment and write `notes.md`.
+step-8 experiment.
 
 ## Files in this lesson
 - `lesson.py` — starter code, implement the TODOs
 - `check.py` — run this to verify your implementation
-- `notes.md` — write your findings here (stub already created)
 - `pyproject.toml` — this lesson's own uv project (no third-party deps
   needed here, just stdlib `math`)
 
 ## Running
 
-This lesson is its own uv project. From this folder:
+This lesson is its own uv project. All commands below run from
+*inside this folder*.
+
+Run a script:
 ```
 uv run check.py
+uv run lesson.py
 ```
 `uv` resolves/installs this lesson's dependencies on first run — no
 manual `pip install` or shared venv needed.
+
+Add a dependency (updates `pyproject.toml` + `uv.lock`, syncs `.venv`):
+```
+uv add <package>          # needed to run the lesson
+uv add --dev <package>    # only needed for your own dev/exploration, e.g. jupyter
+```
+
+Open a Python REPL in this lesson's environment:
+```
+uv run python
+```
+
+Run Jupyter (after `uv add --dev jupyter`):
+```
+uv run jupyter lab
+```
+Or try it once without adding it permanently:
+```
+uv run --with jupyter jupyter lab
+```

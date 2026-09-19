@@ -34,10 +34,6 @@ after attempting each piece independently — not copied wholesale.
 7. *(Optional)* Interpretability — induction heads, sparse autoencoders
    on a small open model (GPT-2 small).
 
-Each stage ends with a short "what I learned" note — a hypothesis
-formed *before* reading the source, then checked experimentally.
-Code without an explanation of *why* is considered incomplete.
-
 ## Project structure
 
 Each stage is broken into individual lessons, generated on request by
@@ -46,8 +42,8 @@ breakdown and links).
 
 - `lessons/<stage-id>-<stage-slug>/<lesson-id>-<lesson-slug>/` — one
   folder per lesson: `README.md` (description, plan, links, task),
-  starter code with `# TODO`s, a `check.py` when the output is
-  verifiable, and `notes.md` for the "what I learned" writeup.
+  starter code with `# TODO`s, and a `check.py` when the output is
+  verifiable.
 - `progress.md` at the project root — tracks which lessons are not
   started / in progress / done. Source of truth for "what's next".
 - Dependencies: each lesson is its own independent `uv` project — a

@@ -3,7 +3,7 @@
 Status legend: not started / in progress / done
 
 ## Stage 00 — foundations (prerequisite)
-- [~] 00 derivatives-and-gradients — in progress
+- [x] 00 derivatives-and-gradients — done: analytical + numerical derivatives/gradient implemented, verified against finite differences, confirmed by experiment that +grad increases f3 and -grad decreases it
 - [ ] 01 micrograd — not started
 - [ ] 02 neuron-layer-mlp — not started
 - [ ] 03 bigram-language-model — not started
